@@ -97,9 +97,10 @@ def get_movie_reviews(movie_id):
 # ==================== NLP Models Loading ====================
 @st.cache_resource
 def load_sentiment_model():
+    model_path = './finetuned-roberta'
     return pipeline(
         "text-classification",
-        model=r"G:\NLP_Project\finetuned-roberta"
+        model= model_path
     )
 
 @st.cache_resource
