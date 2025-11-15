@@ -122,14 +122,12 @@ def analyze_sentiments(reviews, sentiment_pipe):
             sentiments.append({"label": "ERROR"})
     return sentiments
 
-def get_cluster_keywords(reviews, labels, top_n=2):
+def get_cluster_keywords(reviews, labels, top_n=5):
     cluster_keywords = {}
     for cluster in set(labels):
         if cluster == -1:
-            continue
+            continue  # -1 is noise
         cluster_texts = [reviews[i] for i in range(len(reviews)) if labels[i] == cluster]
-        if len(cluster_texts) == 0:
-            continue
         vectorizer = TfidfVectorizer(stop_words='english', ngram_range=(1,2))
         X = vectorizer.fit_transform(cluster_texts)
         scores = np.array(X.sum(axis=0)).flatten()
@@ -230,7 +228,7 @@ if analyze_button and movie_name:
         embeddings = embedding_model.encode(reviews, show_progress_bar=False)
         clusterer = hdbscan.HDBSCAN(min_cluster_size=2, metric='euclidean')
         cluster_labels = clusterer.fit_predict(embeddings)
-        cluster_keywords = get_cluster_keywords(reviews, cluster_labels, top_n=3)
+        cluster_keywords = get_cluster_keywords(reviews, cluster_labels, top_n=2)
     
     with st.spinner("📝 Generating summary..."):
         final_summary, individual_summaries = summarize_reviews(reviews, summarizer_pipe)
