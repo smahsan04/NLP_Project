@@ -310,6 +310,7 @@ if analyze_button and movie_name:
     reviews_df = pd.DataFrame({
         'Author': [dr[0] for dr in detailed_reviews],
         'Review': reviews,
+        'Sentiment': [label_mapping.get(item['label'], item['label']) for item in sentiment_results]
     })
     
     reviews_df.insert(0, '#', range(1, len(reviews_df) + 1))
