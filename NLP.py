@@ -2,10 +2,10 @@ import streamlit as st
 import pandas as pd
 from collections import Counter
 import requests
-# from transformers import pipeline
-# from sentence_transformers import SentenceTransformer
-# import hdbscan
-# from sklearn.feature_extraction.text import TfidfVectorizer
+from transformers import pipeline
+from sentence_transformers import SentenceTransformer
+import hdbscan
+from sklearn.feature_extraction.text import TfidfVectorizer
 import numpy as np
 from dotenv import load_dotenv
 import os
