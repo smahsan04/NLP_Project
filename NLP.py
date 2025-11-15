@@ -214,6 +214,7 @@ if analyze_button and movie_name:
         st.write(data.get('overview', 'No overview available'))
     
     st.markdown("---")
+    print(len(reviews)) 
     
     # Load models and analyze
     with st.spinner("🤖 Loading AI models..."):
