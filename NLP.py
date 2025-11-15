@@ -217,10 +217,10 @@ if analyze_button and movie_name:
     st.markdown("---")
     
     # Load models and analyze
-    # with st.spinner("🤖 Loading AI models..."):
-        # sentiment_pipe = load_sentiment_model()
-        # summarizer_pipe = load_summarizer()
-        # embedding_model = load_embedding_model()
+    with st.spinner("🤖 Loading AI models..."):
+        sentiment_pipe = load_sentiment_model()
+        summarizer_pipe = load_summarizer()
+        embedding_model = load_embedding_model()
     
     with st.spinner("🔬 Analyzing sentiments..."):
         sentiment_results = analyze_sentiments(reviews, sentiment_pipe)
