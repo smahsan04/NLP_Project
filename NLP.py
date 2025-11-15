@@ -108,7 +108,7 @@ def load_summarizer():
 
 @st.cache_resource
 def load_embedding_model():
-    return SentenceTransformer(r"G:\NLP_Project\all-MiniLM-L6-v2")
+    return SentenceTransformer("all-MiniLM-L6-v2")
 
 # ==================== Analysis Functions ====================
 def analyze_sentiments(reviews, sentiment_pipe):
