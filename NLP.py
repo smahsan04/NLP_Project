@@ -177,8 +177,8 @@ with st.sidebar:
     
     st.markdown("---")
     st.markdown("### About")
-    st.info("This tool analyzes movie reviews using NLP for sentiment analysis, topic classification, and summarization.")
-    st.markdown("**Model:** RoBERTa fine-tuned on IMDb")
+    st.info("This tool analyzes movie reviews using NLP for sentiment analysis, topic classification, and summarization of reviews.")
+    st.markdown("**Model:** RoBERTa model fine-tuned on IMDb-movie reviews dataset 50k samples.\n**Summarization:** DistilBART-CNN.\n**Topic Clustering:** all-MiniLM-L6-v2 for embeddings, and HDBSCAN with Sentence Transformers.")
 
 # Main content
 if analyze_button and movie_name:
@@ -192,7 +192,7 @@ if analyze_button and movie_name:
     with st.spinner("📥 Fetching reviews..."):
         reviews, detailed_reviews = get_movie_reviews(data["id"])
         
-        if len(reviews) == 0:
+        if len(reviews) <= 2:
             st.warning("⚠️ No reviews found for this movie.")
             st.stop()
     
@@ -352,7 +352,7 @@ else:
         **🤖 AI Models Used:**
         - **Sentiment Analysis:** RoBERTa fine-tuned on IMDb dataset
         - **Summarization:** DistilBART-CNN
-        - **Topic Clustering:** HDBSCAN with Sentence Transformers
+        - **Topic Clustering:** all-MiniLM-L6-v2 for embeddings, and HDBSCAN with Sentence Transformers
         
         **✨ Features:**
         - 🎯 Automatic sentiment classification (Positive/Negative)
